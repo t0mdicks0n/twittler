@@ -1,17 +1,49 @@
 .topbar {
-	
+	width: 100%;
+	float: left;
+	margin: 0 0 1.5em 0;
+	padding: 0;
+	list-style: none;
+	background-color: #f2f2f2;
+	border-bottom: 1px solid #ccc; 
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	text-align: center;
 }
 
-.topbar div {
-  display: inline;
-  margin: 0;
-  padding: 0 0.5em;
-  border-right: 1px solid;
+.topbar li {
+	display: inline-block;
+	margin: 0;
+	padding: 0 0.5em;
+	border-right: 1px solid;
+	color: #069;
+	text-align:center;
 }
-
-
 
 .logo {
 	height: 17%;
 	width: 17%;
+}
+
+.topbar #hoover li {
+	color: #c00;
+	background-color: #fff;
+}
+
+.timestamp {
+	float: right;
+	display: inline;
+}
+
+.content {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	display: ;
+}
+
+
+.user {
+	color: #069;
 }
