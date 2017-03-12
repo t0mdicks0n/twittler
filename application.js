@@ -15,6 +15,8 @@ $(document).ready(function(){
 */
 
 $(document).ready(function() {
+
+  // Global variables
   var INDEX_IN_TWEETS = 0;
   var $body = $('body').find('.stream');
   $body.find('.stream').html('');
@@ -22,6 +24,18 @@ $(document).ready(function() {
   // Wait a couple of milliseconds on initial load for data_generator to load a couple of tweets.
   setTimeout(fetchTweets, 500, 6);
 
+  // Runs constantly after a fixed interval and updates how many unread tweets the user has.
+  setInterval(streamUpload, 5000);
+
+  // Events
+  $('body').find('#more-tweets').on('click', function() {
+    if ($('body').find('#more-tweets').text() !== 'Waiting for tweets..') {
+      $('body').find('#more-tweets').text('Waiting for tweets..');
+      fetchTweets(streams.home.length - INDEX_IN_TWEETS - 1);
+    }
+  }).css("cursor", "pointer");
+
+  // Functions
   function fetchTweets(nrOfTweets) {
     for (var i = 0; i < nrOfTweets; i++) {
       INDEX_IN_TWEETS ++;
@@ -36,16 +50,12 @@ $(document).ready(function() {
     }
   }
 
-  // Runs constantly after a fixed interval and updates how many unread tweets the user has.
-  setInterval(streamUpload, 5000);
-
   function streamUpload() {
     var newTweets = streams.home.length - INDEX_IN_TWEETS;
     if (newTweets > 0) {
       $('body').find('#more-tweets').html("You have <strong>" + newTweets + "</strong> new tweets to show. Click to show them.");
     }
   }
-
 });
 
 
