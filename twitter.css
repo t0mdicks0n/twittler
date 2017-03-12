@@ -47,6 +47,10 @@ body {
 	display: inline;
 }
 
+#more-tweets {
+	background-color: yellow;
+}
+
 .content div {
 	margin-left: auto;
 	margin-right: auto;
