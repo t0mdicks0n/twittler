@@ -34,23 +34,24 @@ $(document).ready(function() {
   */
 
   var INDEX_IN_TWEETS = 0;
-  var $body = $('body');
+  var $body = $('body').find('.content');
   $body.find('.content').html('');
 
-  // Wait a couple of milliseconds for data_generator to load a couple of tweets.
-  fetchTweets(5);
+  // Wait a couple of milliseconds on initial load for data_generator to load a couple of tweets.
+  setTimeout(fetchTweets, 500, 6);
 
   function fetchTweets(nrOfTweets) {
-    for (var i = 0; i <= nrOfTweets; i++) {
+    for (var i = 0; i < nrOfTweets; i++) {
       INDEX_IN_TWEETS ++;
-      var tweet = streams.home[INDEX_IN_TWEETS + i];
+      var tweet = streams.home[INDEX_IN_TWEETS];
       var $tweet = $('<div class="content"><div class="timestamp"></div><div class="user"></div><div class="tweet"></div></div>');
 
       $tweet.find('.user').text('@' + tweet.user);
       $tweet.find('.timestamp').text(tweet.created_at.toLocaleString());
       $tweet.find('.tweet').text(tweet.message);
       
-      $tweet.appendTo($body);
+      //$tweet.appendTo($body);
+      $tweet.prependTo($body);
 
     }
   }
