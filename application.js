@@ -47,6 +47,9 @@ $(document).ready(function() {
     USER_VIEW = true;
     CURRENT_USER = $(this).parent().data('user');
     $('body').find('#more-tweets').html('<div id="more-tweets back">&larr; Back</div>');
+    // Do something here to filter out
+    userFilter(CURRENT_USER);
+
   }).css("cursor", "pointer");
 
   // Functions
@@ -59,7 +62,7 @@ $(document).ready(function() {
       $tweet.find('.user').text('@' + tweet.user);
       $tweet.find('.timestamp').text(tweet.created_at.toLocaleString());
       $tweet.find('.tweet').text(tweet.message);
-      
+
       $tweet.prependTo($body);
     }
   }
@@ -75,6 +78,23 @@ $(document).ready(function() {
   }
 
   // A function that fetch and displays tweets for a specific user
+  function userFilter(user) {
+     var numOfTweets = $('body').find('.content').length;
+
+     for (var i = 0; i < numOfTweets; i++) {
+      if ($('.content:eq(' + i + ')').data('user') === user) {
+        // Loopen ovan borde fungera
+        // Nu behöver jag göra så att alla som inte är true ovan
+        // på något sätt döljs
+        $('.content:eq(' + i + ')').css('display', 'block');
+
+
+      } else {
+        $('.content:eq(' + i + ')').css('display', 'none').slideUp();
+      }
+     }
+
+  }
 });
 
 
