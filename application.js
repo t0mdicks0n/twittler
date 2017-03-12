@@ -37,7 +37,8 @@ $(document).ready(function() {
   var $body = $('body');
   $body.find('.content').html('');
 
-  fetchTweets(10);
+  // Wait a couple of milliseconds for data_generator to load a couple of tweets.
+  fetchTweets(5);
 
   function fetchTweets(nrOfTweets) {
     for (var i = 0; i <= nrOfTweets; i++) {

@@ -1,3 +1,13 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+    padding: 25px;
+}
+
 .topbar {
 	width: 100%;
 	float: left;
@@ -26,6 +36,7 @@
 	width: 17%;
 }
 
+/* Unclear if this below does anything? */
 .topbar #hoover li {
 	color: #c00;
 	background-color: #fff;
@@ -41,8 +52,21 @@
 	margin-right: auto;
 	width: 50%;
 	display: ;
+	position: relative;
 }
 
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow:hidden;
+}
+
+p#footer-text {
+	text-align:center;
+}
 
 .user {
 	color: #069;
