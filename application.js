@@ -54,6 +54,7 @@ $(document).ready(function() {
     var newTweets = streams.home.length - INDEX_IN_TWEETS;
     if (newTweets > 0) {
       $('body').find('#more-tweets').html("You have <strong>" + newTweets + "</strong> new tweets to show. Click to show them.");
+      $('title').html('(' + newTweets + ') Twittler');
     }
   }
 });
