@@ -34,8 +34,8 @@ $(document).ready(function() {
   */
 
   var INDEX_IN_TWEETS = 0;
-  var $body = $('body').find('.content');
-  $body.find('.content').html('');
+  var $body = $('body').find('.stream');
+  $body.find('.stream').html('');
 
   // Wait a couple of milliseconds on initial load for data_generator to load a couple of tweets.
   setTimeout(fetchTweets, 500, 6);
