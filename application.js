@@ -20,6 +20,8 @@ $(document).ready(function() {
   var INDEX_IN_TWEETS = 0;
   var $body = $('body').find('.stream');
   $body.find('.stream').html('');
+  var USER_VIEW = false;
+  var CURRENT_USER = "not set";
 
   // Wait a couple of milliseconds on initial load for data_generator to load a couple of tweets.
   setTimeout(fetchTweets, 500, 6);
@@ -29,10 +31,22 @@ $(document).ready(function() {
 
   // Events
   $('body').find('#more-tweets').on('click', function() {
-    if ($('body').find('#more-tweets').text() !== 'Waiting for tweets..') {
-      $('body').find('#more-tweets').text('Waiting for tweets..');
-      fetchTweets(streams.home.length - INDEX_IN_TWEETS - 1);
+    if (USER_VIEW) {
+        $('body').find('#more-tweets').text('Waiting for tweets..');
+        fetchTweets(streams.home.length - INDEX_IN_TWEETS - 1);
+        USER_VIEW = false;
+    } else {
+      if ($('body').find('#more-tweets').text() !== 'Waiting for tweets..') {
+        $('body').find('#more-tweets').text('Waiting for tweets..');
+        fetchTweets(streams.home.length - INDEX_IN_TWEETS - 1);
+      }
     }
+  }).css("cursor", "pointer");
+
+  $('.stream').on('click', '.content .user', function() {
+    USER_VIEW = true;
+    CURRENT_USER = $(this).parent().data('user');
+    $('body').find('#more-tweets').html('<div id="more-tweets back">&larr; Back</div>');
   }).css("cursor", "pointer");
 
   // Functions
@@ -40,7 +54,7 @@ $(document).ready(function() {
     for (var i = 0; i < nrOfTweets; i++) {
       INDEX_IN_TWEETS ++;
       var tweet = streams.home[INDEX_IN_TWEETS];
-      var $tweet = $('<div class="content"><div class="timestamp"></div><div class="user"></div><div class="tweet"></div></div>');
+      var $tweet = $('<div class="content" data-user="' + tweet.user + '"><div class="timestamp"></div><div class="user" id="user"></div><div class="tweet"></div></div>');
 
       $tweet.find('.user').text('@' + tweet.user);
       $tweet.find('.timestamp').text(tweet.created_at.toLocaleString());
@@ -51,12 +65,16 @@ $(document).ready(function() {
   }
 
   function streamUpload() {
-    var newTweets = streams.home.length - INDEX_IN_TWEETS;
-    if (newTweets > 0) {
-      $('body').find('#more-tweets').html("You have <strong>" + newTweets + "</strong> new tweets to show. Click to show them.");
-      $('title').html('(' + newTweets + ') Twittler');
+    if (USER_VIEW === false) {
+      var newTweets = streams.home.length - INDEX_IN_TWEETS;
+      if (newTweets > 0) {
+        $('body').find('#more-tweets').html("You have <strong>" + newTweets + "</strong> new tweets to show. Click to show them.");
+        $('title').html('(' + newTweets + ') Twittler');
+      }
     }
   }
+
+  // A function that fetch and displays tweets for a specific user
 });
 
 
