@@ -35,6 +35,7 @@ $(document).ready(function() {
         $('body').find('#more-tweets').text('Waiting for tweets..');
         fetchTweets(streams.home.length - INDEX_IN_TWEETS - 1);
         USER_VIEW = false;
+        clearFilter();
     } else {
       if ($('body').find('#more-tweets').text() !== 'Waiting for tweets..') {
         $('body').find('#more-tweets').text('Waiting for tweets..');
@@ -83,18 +84,24 @@ $(document).ready(function() {
 
      for (var i = 0; i < numOfTweets; i++) {
       if ($('.content:eq(' + i + ')').data('user') === user) {
-        // Loopen ovan borde fungera
-        // Nu behöver jag göra så att alla som inte är true ovan
-        // på något sätt döljs
         $('.content:eq(' + i + ')').css('display', 'block');
-
-
       } else {
         $('.content:eq(' + i + ')').css('display', 'none').slideUp();
       }
      }
-
   }
+  
+  function clearFilter() {
+    var numOfTweets = $('body').find('.content').length;
+    for (var i = 0; i < numOfTweets; i++) {
+      $('.content:eq(' + i + ')').css('display', 'block');
+    }
+  }
+
+     // Logiken här ovan fungerar. Men jag lyckas inte ta bort alla filter därefter.
+     // Alla de filtrerade hamnar längst ner i streamen av tweets. Försökte loopa igenom
+     // alla och ta bort CSS-grejen med det fungerade inte heller. Kan det vara något
+     // knepigt med min data-struktur som ställer till det för mig?
 });
 
 
