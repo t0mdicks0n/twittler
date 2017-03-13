@@ -42,21 +42,41 @@ body {
 	background-color: #fff;
 }
 
+.content {
+	margin-left: 0px;
+	vertical-align: bottom;
+	border-top: 1px dashed #8c8b8b;
+	border-color: #A9D0F5;
+
+}
+
 .content div {
-	margin-left: auto;
 	margin-right: auto;
-	width: 50%;
-	display: ;
+	display: block;
 	position: relative;
+	padding-top: 20px;
+	margin-left: 10px;
+}
+
+.user {
+	color: #58ACFA;
+	float: left;
+	padding-right: 15px;
+	font-weight: bold;
 }
 
 .timestamp {
-	float: right;
-	display: inline;
+	overflow: hidden;
+}
+
+.tweet {
+	display: block;
+	margin-bottom: 30px;
+	font-size: 130%;
 }
 
 #more-tweets {
-	background-color: yellow;
+	background-color: #D8D8D8;
 }
 
 #back-button {
@@ -68,18 +88,17 @@ body {
 }
 
 footer {
-    position: absolute;
+    position: relative;
     left: 0;
     bottom: 0;
     height: 100px;
     width: 100%;
-    overflow:hidden;
+    overflow: hidden;
+    display: block;
 }
 
 p#footer-text {
+	padding-top: 10px;
 	text-align:center;
 }
 
-.user {
-	color: #069;
-}

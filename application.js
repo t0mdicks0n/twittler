@@ -1,19 +1,3 @@
-/*
-$(document).ready(function(){
-  var $body = $('body');
-  $body.find('.content').html('');
-
-  var index = streams.home.length - 1;
-  while(index >= 0) {
-    var tweet = streams.home[index];
-    var $tweet = $('<div class="content"><div class="user"></div><div class="tweet"></div><div class="timestamp"></div></div>');
-    $tweet.text('@' + tweet.user + ': ' + tweet.message);
-    $tweet.appendTo($body);
-    index -= 1;
-  }
-});
-*/
-
 $(document).ready(function() {
 
   // Global variables
@@ -50,15 +34,18 @@ $(document).ready(function() {
     $('body').find('#more-tweets').html('<div id="more-tweets back">&larr; Back</div>');
     // Do something here to filter out
     userFilter(CURRENT_USER);
+  });
 
-  }).css("cursor", "pointer");
+  $('.stream').on('mouseover', '.content .user', function() {
+    $(this).css("cursor", "pointer");
+  });
 
   // Functions
   function fetchTweets(nrOfTweets) {
     for (var i = 0; i < nrOfTweets; i++) {
       INDEX_IN_TWEETS ++;
       var tweet = streams.home[INDEX_IN_TWEETS];
-      var $tweet = $('<div class="content" data-user="' + tweet.user + '"><div class="timestamp"></div><div class="user" id="user"></div><div class="tweet"></div></div>');
+      var $tweet = $('<div class="content" data-user="' + tweet.user + '"><div class="user" id="user"></div><div class="timestamp"></div><div class="tweet"></div></div>');
 
       $tweet.find('.user').text('@' + tweet.user);
       $tweet.find('.timestamp').text(tweet.created_at.toLocaleString());
@@ -90,18 +77,13 @@ $(document).ready(function() {
       }
      }
   }
-  
+
   function clearFilter() {
     var numOfTweets = $('body').find('.content').length;
     for (var i = 0; i < numOfTweets; i++) {
       $('.content:eq(' + i + ')').css('display', 'block');
     }
   }
-
-     // Logiken här ovan fungerar. Men jag lyckas inte ta bort alla filter därefter.
-     // Alla de filtrerade hamnar längst ner i streamen av tweets. Försökte loopa igenom
-     // alla och ta bort CSS-grejen med det fungerade inte heller. Kan det vara något
-     // knepigt med min data-struktur som ställer till det för mig?
 });
 
 
